@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv').config()
 const colors = require('colors');
 const {router} = require('./routes/goalRoutes')
+const {userRouter} = require('./routes/userRoutes');
 const cors = require('cors')
 const {errorHandler} = require('./middleware/errorMiddleware')
 const connectDB = require('./config/db');
@@ -16,5 +17,6 @@ app.use(express.urlencoded({extended:false}))
 app.use(errorHandler)
 app.use(cors())
 app.use('/api/goals',router);
+app.use('/api/users/',userRouter);
 
-app.listen(port,() => console.log(`Server listening on port:${port}`))
+app.listen(port,() => console.log(`Server listening on port:${port}`.cyan.underline))
